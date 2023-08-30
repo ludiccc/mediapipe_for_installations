@@ -21,3 +21,6 @@ Se ejecutan dos procesos, uno en python para hacer el reconocimiento y otro en l
 
 ```python ejemplo-pose-landmark-osc.py```
 
+Los mensajes OSC que van desde el script en python contienen una cantidad de argumentos igual a la cantidad de nodos detectados. Es decir, en el caso del *ejemplo-pose-landmark-osc.py*, se reconocen hasta 32 nodos, según ![Pose Landmarks list](https://developers.google.com/static/mediapipe/images/solutions/pose_landmarks_index.png). Entonces, el script mandará un mensaje con 32 argumentos, cada uno conteniendo los tres valores (*x*, *y*, *z*) de posición para ese nodo, separados con espacio. Los valores están normalizados, es decir, valen entre 0 y 1.
+
+En el ejemplo de Processing, estos valores se desglosan y se agregan a un PVector, para después dibujarse en pantalla.
