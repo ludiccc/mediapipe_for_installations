@@ -44,9 +44,10 @@ with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) a
                 msg = osc_message_builder.OscMessageBuilder(address='hand_landmarks')
 
                 for landmark in landmarks.landmark:
-                    msg.add_arg(landmark.x)
-                    msg.add_arg(landmark.y)
-                    msg.add_arg(landmark.z)
+                    strmsg = "{:.3f}".format(landmark.x)+" "+"{:.3f}".format(landmark.y)+" "+"{:.3f}".format(landmark.z)
+                    print(strmsg)
+                    msg.add_arg(strmsg, arg_type="s")
+                    
 
                 msg = msg.build()
                 client.send(msg)

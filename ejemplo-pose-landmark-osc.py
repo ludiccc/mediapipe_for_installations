@@ -81,7 +81,7 @@ def draw_landmarks_on_image(rgb_image, detection_result):
 
         strmsg = ""
         for landmark in landmarks:
-            strmsg = "{:.3f}".format(landmark.x)+" "+"{:.3f}".format(landmark.y)
+            strmsg = "{:.3f}".format(landmark.x)+" "+"{:.3f}".format(landmark.y)+" "+"{:.3f}".format(landmark.z)
             msg.add_arg(strmsg, arg_type="s")
 
         print(strmsg)
