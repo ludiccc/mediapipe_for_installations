@@ -32,10 +32,7 @@ from mediapipe.framework.formats import landmark_pb2
 import numpy as np
 
 def draw_landmarks_on_image(rgb_image, detection_result):
-    if mode == "PoseLandmarker":
-        landmarks_list = detection_result.pose_landmarks
-    else:
-        landmarks_list = detection_result.face_landmarks
+    landmarks_list = detection_result.pose_landmarks
     annotated_image = np.copy(rgb_image)
 
     
@@ -50,34 +47,11 @@ def draw_landmarks_on_image(rgb_image, detection_result):
           landmark_pb2.NormalizedLandmark(x=landmark.x, y=landmark.y, z=landmark.z) for landmark in landmarks
         ])
 
-        if mode == "PoseLandmarker":
-            solutions.drawing_utils.draw_landmarks(
-              annotated_image,
-              landmarks_proto,
-              solutions.pose.POSE_CONNECTIONS,
-              solutions.drawing_styles.get_default_pose_landmarks_style())
-        else: 
-            solutions.drawing_utils.draw_landmarks(
-                image=annotated_image,
-                landmark_list=landmarks_proto,
-                connections=mp.solutions.face_mesh.FACEMESH_TESSELATION,
-                landmark_drawing_spec=None,
-                connection_drawing_spec=mp.solutions.drawing_styles
-                .get_default_face_mesh_tesselation_style())
-            solutions.drawing_utils.draw_landmarks(
-                image=annotated_image,
-                landmark_list=landmarks_proto,
-                connections=mp.solutions.face_mesh.FACEMESH_CONTOURS,
-                landmark_drawing_spec=None,
-                connection_drawing_spec=mp.solutions.drawing_styles
-                .get_default_face_mesh_contours_style())
-            solutions.drawing_utils.draw_landmarks(
-                image=annotated_image,
-                landmark_list=landmarks_proto,
-                connections=mp.solutions.face_mesh.FACEMESH_IRISES,
-                  landmark_drawing_spec=None,
-                  connection_drawing_spec=mp.solutions.drawing_styles
-                  .get_default_face_mesh_iris_connections_style())            
+        solutions.drawing_utils.draw_landmarks(
+          annotated_image,
+          landmarks_proto,
+          solutions.pose.POSE_CONNECTIONS,
+          solutions.drawing_styles.get_default_pose_landmarks_style())
 
         strmsg = ""
         for landmark in landmarks:
@@ -93,26 +67,15 @@ def draw_landmarks_on_image(rgb_image, detection_result):
 
 
 VisionRunningMode = mp.tasks.vision.RunningMode
-mode = "PoseLandmarker" 
-#mode = "FaceLandmarker" 
 
 # STEP 2: Create an PoseLandmarker object.
-if mode == "PoseLandmarker":
-    model_path = 'pose_landmarker_lite.task'
-    base_options = python.BaseOptions(model_asset_path=model_path)
-    options = vision.PoseLandmarkerOptions(
-        base_options=base_options,
-        output_segmentation_masks=True,
-        min_pose_detection_confidence=0.5)
-    detector = vision.PoseLandmarker.create_from_options(options)
-elif mode == "FaceLandmarker":
-    model_path = 'face_landmarker.task'
-    base_options = python.BaseOptions(model_asset_path=model_path)
-    options = vision.FaceLandmarkerOptions(
-        base_options=base_options,
-        output_face_blendshapes=True,
-        num_faces=4)
-    detector = vision.FaceLandmarker.create_from_options(options)
+model_path = 'pose_landmarker_lite.task'
+base_options = python.BaseOptions(model_asset_path=model_path)
+options = vision.PoseLandmarkerOptions(
+    base_options=base_options,
+    output_segmentation_masks=True,
+    min_pose_detection_confidence=0.5)
+detector = vision.PoseLandmarker.create_from_options(options)
 
 # STEP 3: Load the input image.
 cap = cv2.VideoCapture(args.cam)
