@@ -1,3 +1,10 @@
+#
+#
+# This code is a derivative code from the provided in https://developers.google.com/mediapipe/
+# The example was made by Federico Joselevich Puiggrós and team 
+# within the context of Taller 5, Diseño Multimedial, Facultad de Artes, Universidad Nacional de La Plata
+#
+#
 # This example sends the (x,y) each person face in front of the camera.
 # STEP 1: Import the necessary modules.
 import cv2

@@ -1,3 +1,10 @@
+#
+#
+# This code is a derivative code from the provided in https://developers.google.com/mediapipe/
+# The example was made by Federico Joselevich Puiggrós and team 
+# within the context of Taller 5, Diseño Multimedial, Facultad de Artes, Universidad Nacional de La Plata
+#
+#
 import cv2
 import mediapipe as mp
 from argparse import ArgumentParser
