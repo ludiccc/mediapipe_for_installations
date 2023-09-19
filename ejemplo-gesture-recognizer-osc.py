@@ -87,7 +87,7 @@ while cap.isOpened():
             
             msg = osc_message_builder.OscMessageBuilder(address = 'gestures')
 
-            strmsg = f"{recognition_result.gestures[0][0].category_name} ({recognition_result.gestures[0][0].score:.2f})"    
+            strmsg = f"{recognition_result.gestures[0][0].category_name} {recognition_result.gestures[0][0].score:.2f}"    
             print(strmsg)
             msg.add_arg(strmsg, arg_type="s")
 
