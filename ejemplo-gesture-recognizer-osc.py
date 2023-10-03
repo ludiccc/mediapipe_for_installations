@@ -38,6 +38,7 @@ from pythonosc import osc_server
 
 client = udp_client.SimpleUDPClient(args.ip, args.port)
 
+
 TEXT_COLOR = (255, 0, 0)
 MARGIN = 10  # pixels
 ROW_SIZE = 10  # pixels
@@ -58,6 +59,7 @@ base_options = python.BaseOptions(model_asset_path='gesture_recognizer.task')
 options = vision.GestureRecognizerOptions(base_options=base_options)
 recognizer = vision.GestureRecognizer.create_from_options(options)
 
+#client.send_message("/start", "Gesture Recognizer")   # Send float message
 
 # STEP 3: Load the input image.
 cap = cv2.VideoCapture(args.cam)
@@ -74,6 +76,8 @@ while cap.isOpened():
     frame.flags.writeable = False
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
+    if args.image != "":
+        frame = cv2.imread(args.image)
     mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame)
 
 
@@ -85,7 +89,7 @@ while cap.isOpened():
         if len(recognition_result.gestures) > 0:
 
             
-            msg = osc_message_builder.OscMessageBuilder(address = 'gestures')
+            msg = osc_message_builder.OscMessageBuilder(address = '/gesture')
 
             strmsg = f"{recognition_result.gestures[0][0].category_name} {recognition_result.gestures[0][0].score:.2f}"    
             print(strmsg)
@@ -93,28 +97,33 @@ while cap.isOpened():
 
             cv2.putText(frame, strmsg, (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
-
-            for hand_landmarks in recognition_result.hand_landmarks:
-                    hand_landmarks_proto = landmark_pb2.NormalizedLandmarkList()
-                    hand_landmarks_proto.landmark.extend([
-                        landmark_pb2.NormalizedLandmark(x=landmark.x, y=landmark.y, z=landmark.z) for landmark in hand_landmarks
-                    ])
-
-                    mp_drawing.draw_landmarks(
-                        frame,
-                        hand_landmarks_proto,
-                        mp_hands.HAND_CONNECTIONS,
-                        mp_drawing_styles.get_default_hand_landmarks_style(),
-                        mp_drawing_styles.get_default_hand_connections_style())
-
-                    for landmark in hand_landmarks:
-                        strmsg = "{:.3f}".format(landmark.x)+" "+"{:.3f}".format(landmark.y)+" "+"{:.3f}".format(landmark.z)
-                        print(strmsg)
-                        msg.add_arg(strmsg, arg_type="s")
-
-
             msg = msg.build()
             client.send(msg)
+
+
+        msg = osc_message_builder.OscMessageBuilder(address = '/landmarks')
+        for hand_landmarks in recognition_result.hand_landmarks:
+                hand_landmarks_proto = landmark_pb2.NormalizedLandmarkList()
+                hand_landmarks_proto.landmark.extend([
+                    landmark_pb2.NormalizedLandmark(x=landmark.x, y=landmark.y, z=landmark.z) for landmark in hand_landmarks
+                ])
+
+                mp_drawing.draw_landmarks(
+                    frame,
+                    hand_landmarks_proto,
+                    mp_hands.HAND_CONNECTIONS,
+                    mp_drawing_styles.get_default_hand_landmarks_style(),
+                    mp_drawing_styles.get_default_hand_connections_style())
+
+                for landmark in hand_landmarks:
+                    strmsg = "{:.3f}".format(landmark.x)+" "+"{:.3f}".format(landmark.y)+" "+"{:.3f}".format(landmark.z)
+                    print(strmsg)
+                    msg.add_arg(strmsg, arg_type="s")
+
+        msg = msg.build()
+        client.send(msg)
+        print("Gesture sent", msg)
+
 
 
     # Display the frame

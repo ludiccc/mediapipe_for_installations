@@ -28,7 +28,8 @@ void draw() {
 
 
 void oscEvent(OscMessage theOscMessage) {
-  
+  println(theOscMessage);
+  println(theOscMessage.arguments());
   puntos = new ArrayList<PVector>();
   
   for (int i = 0; i < theOscMessage.arguments().length; i++) {
