@@ -133,39 +133,47 @@ cap = cv2.VideoCapture(args.cam)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, args.cam_width)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, args.cam_height)
 
+def detect_and_show(image):
+    detection_result = detector.detect(image)
+
+    # STEP 5: Process the detection result. In this case, visualize it.
+    annotated_image = visualize(image.numpy_view(), detection_result)
+    text = "Anotated:" + str(cap.get(cv2.CAP_PROP_FPS))
+    cv2.putText(annotated_image, text, (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+
+
+    #cv2.imshow("Analysis", cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR))
+    #cv2.imshow("test", cv2.cvtColor(annotated_image_test, cv2.COLOR_RGB2BGR))
+    #outputImg = np.hstack((cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR), cv2.cvtColor(annotated_image_test, cv2.COLOR_RGB2BGR)))
+    #cv2.imshow("Ejemplo Multiple Face", outputImg)
+    cv2.imshow("Ejemplo Multiple Face", cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR))
+
+
 if args.image != "":
     test_image = mp.Image.create_from_file(args.image)    
 
-# STEP 4: Detect pose landmarks from the input image.
-while cap.isOpened():
-    # Read frame, crop it, flip it, suits your needs.
-    res, frame = cap.read()
-    frame.flags.writeable = False
-    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    while True:
+        # Read frame, crop it, flip it, suits your needs.
+        
+        detect_and_show(test_image)
+        c = cv2.waitKey(1) & 0xFF
+        if c == 27 or c == 'q':
+            break
 
-    mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame)
+else:
+    # STEP 4: Detect pose landmarks from the input image.
+    while cap.isOpened():
+        # Read frame, crop it, flip it, suits your needs.
+        res, frame = cap.read()
+        frame.flags.writeable = False
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame)
 
-    detection_result = detector.detect(mp_image)
 
-    # STEP 5: Process the detection result. In this case, visualize it.
-    annotated_image = visualize(mp_image.numpy_view(), detection_result)
-    text = str(cap.get(cv2.CAP_PROP_FPS))
-    cv2.putText(annotated_image, text, (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-    cv2.imshow("Analysis", cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR))
-
-    if args.image != "":
-        detection_result_test = detector.detect(test_image)
-        print(detection_result_test)
-
-        # STEP 5: Process the detection result. In this case, visualize it.
-        annotated_image_test = visualize(test_image.numpy_view(), detection_result_test)
-        text = str(cap.get(cv2.CAP_PROP_FPS))
-        cv2.putText(annotated_image_test, text, (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-        cv2.imshow("test", cv2.cvtColor(annotated_image_test, cv2.COLOR_RGB2BGR))
-
-    c = cv2.waitKey(1) & 0xFF
-    if c == 27 or c == 'q':
-        break
+        detect_and_show(frame)
+        c = cv2.waitKey(1) & 0xFF
+        if c == 27 or c == 'q':
+            break
 
 
 cv2.destroyAllWindows()

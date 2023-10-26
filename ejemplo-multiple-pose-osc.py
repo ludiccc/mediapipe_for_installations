@@ -80,6 +80,18 @@ def draw_landmarks_on_image(rgb_image, detection_result):
     return annotated_image
 
 
+def detect_and_show(image):
+    detection_result = detector.detect(image)
+
+    # STEP 5: Process the detection result. In this case, visualize it.
+    annotated_image = draw_landmarks_on_image(image.numpy_view(), detection_result)
+    if args.image == '': 
+        text = str(cap.get(cv2.CAP_PROP_FPS))
+        cv2.putText(annotated_image, text, (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+
+    cv2.imshow("Analysis", cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR))
+
+
 VisionRunningMode = mp.tasks.vision.RunningMode
 
 # STEP 2: Create an PoseLandmarker object.
@@ -88,52 +100,48 @@ base_options = python.BaseOptions(model_asset_path=model_path)
 options = vision.PoseLandmarkerOptions(
     base_options=base_options,
     output_segmentation_masks=True,
-    min_pose_detection_confidence=0.1,
-    min_pose_presence_confidence=0.2,
-    min_tracking_confidence=0.2,
-    num_poses=3 # maximum number of poses that can be detected...
+    min_pose_detection_confidence=0.5,
+    min_pose_presence_confidence=0.5,
+    min_tracking_confidence=0.5,
+    num_poses=10 # maximum number of poses that can be detected...
     )
 detector = vision.PoseLandmarker.create_from_options(options)
 
 # STEP 3: Load the input image.
-cap = cv2.VideoCapture(args.cam)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, args.cam_width)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, args.cam_height)
 
 if args.image != "":
     test_image = mp.Image.create_from_file(args.image)    
+    while True:
+        # Read frame, crop it, flip it, suits your needs.
+        
+        detect_and_show(test_image)
+        c = cv2.waitKey(1) & 0xFF
+        if c == 27 or c == 'q':
+            break
 
-# STEP 4: Detect pose landmarks from the input image.
-while cap.isOpened():
-    # Read frame, crop it, flip it, suits your needs.
-    res, frame = cap.read()
-    frame.flags.writeable = False
-    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+else:
+    cap = cv2.VideoCapture(args.cam)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, args.cam_width)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, args.cam_height)
 
-    mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame)
 
-    detection_result = detector.detect(mp_image)
+    # STEP 4: Detect pose landmarks from the input image.
+    while cap.isOpened():
+        # Read frame, crop it, flip it, suits your needs.
+        res, frame = cap.read()
+        frame.flags.writeable = False
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-    # STEP 5: Process the detection result. In this case, visualize it.
-    annotated_image = draw_landmarks_on_image(mp_image.numpy_view(), detection_result)
-    text = str(cap.get(cv2.CAP_PROP_FPS))
-    cv2.putText(annotated_image, text, (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-    cv2.imshow("Analysis", cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR))
+        mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame)
 
-    if args.image != "":
-        detection_result_test = detector.detect(test_image)
+        detect_and_show(mp_image)
 
-        # STEP 5: Process the detection result. In this case, visualize it.
-        annotated_image_test = draw_landmarks_on_image(test_image.numpy_view(), detection_result_test)
-        text = str(cap.get(cv2.CAP_PROP_FPS))
-        cv2.putText(annotated_image_test, text, (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-        cv2.imshow("test", cv2.cvtColor(annotated_image_test, cv2.COLOR_RGB2BGR))
+        c = cv2.waitKey(1) & 0xFF
+        if c == 27 or c == 'q':
+            break
 
-    c = cv2.waitKey(1) & 0xFF
-    if c == 27 or c == 'q':
-        break
-
+    cap.release()
 
 cv2.destroyAllWindows()
-cap.release()
+
 
