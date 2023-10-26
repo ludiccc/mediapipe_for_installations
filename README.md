@@ -21,7 +21,7 @@ Estos ejemplos son de uso académico. No tomarlos como referencia formal de cóm
 Contacto/Contact: Federico Joselevich Puiggrós [f@ludic.cc](mailto:f@ludic.cc)
 [www.ludic.cc](https://www.ludic.cc)
 
-# How to use this examples - Como usar estos ejemplos (in spanish, just for now...)
+# Como usar estos ejemplos
 
 Estos ejemplos de scripts de python tienen tres versiones: una para reconocimiento de nodos de cara (face mesh), una para reconocimiento de nodos del cuerpo (pose landmark) y una para reconocimiento de nodos de mano (hand landmarks).
 
