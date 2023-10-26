@@ -1,5 +1,6 @@
 # MediaPipe for installations - MediaPipe para instalaciones
-As the main propouse of this examples is to guide spanish-speaken students, the main documentation will be in spanish. If you need it in english, you have it here: [English]: README_en.md
+As the main propouse of this examples is to guide spanish-speaken students, the main documentation will be in spanish. If you need it in english, you have it here: 
+[English]: README_en.md
 
  _English_
 Simple MediaPipe examples for electronic/digital/robotic art installations
