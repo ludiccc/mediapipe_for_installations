@@ -13,6 +13,8 @@ Contacto/Contact: Federico Joselevich Puiggrós [f@ludic.cc](mailto:f@ludic.cc)
 
 # How to use this examples
 
+An installed Python and a Mediapipe environment is mandatory for using these examples. You can follow the official Mediapipe installation guide [https://developers.google.com/mediapipe/solutions/setup_python]: https://developers.google.com/mediapipe/solutions/setup_python
+
 These python script examples have three versions: one for face landmarks recognition (face mesh), one for body landmarks recognition (pose landmark), and one for hand landmarks recognition (hand landmarks).
 
 Taking the recognition of body nodes as an example:

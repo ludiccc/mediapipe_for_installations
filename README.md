@@ -23,6 +23,8 @@ Contacto/Contact: Federico Joselevich Puiggrós [f@ludic.cc](mailto:f@ludic.cc)
 
 # Como usar estos ejemplos
 
+Para comenzar, es indispensable tener instalado Python y un entorno con Mediapipe. Pueden seguir la guía oficial de instalación de Mediapipe [https://developers.google.com/mediapipe/solutions/setup_python]: https://developers.google.com/mediapipe/solutions/setup_python
+
 Estos ejemplos de scripts de python tienen tres versiones: una para reconocimiento de nodos de cara (face mesh), una para reconocimiento de nodos del cuerpo (pose landmark) y una para reconocimiento de nodos de mano (hand landmarks).
 
 Tomando como ejemplo el reconocimiento de nodos del cuerpo:
