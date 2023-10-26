@@ -1,5 +1,5 @@
 # MediaPipe for installations - MediaPipe para instalaciones
-Con el propósito principal de este repositorio es dar ejemplos para el trabajo de estudiantes que hablan castellano, la documentación principal está en ese idioma. Se pueden referir a ella aquí: [Castellano]: https://github.com/ludiccc/mediapipe_for_installations/blob/main/README.md
+Con el propósito principal de este repositorio es dar ejemplos para el trabajo de estudiantes que hablan castellano, la documentación principal está en ese idioma. Se pueden referir a ella aquí: [Castellano](https://github.com/ludiccc/mediapipe_for_installations/blob/main/README.md)
 
 Simple MediaPipe examples for electronic/digital/robotic art installations
 
@@ -13,7 +13,7 @@ Contacto/Contact: Federico Joselevich Puiggrós [f@ludic.cc](mailto:f@ludic.cc)
 
 # How to use this examples
 
-An installed Python and a Mediapipe environment is mandatory for using these examples. You can follow the official Mediapipe installation guide [https://developers.google.com/mediapipe/solutions/setup_python]: https://developers.google.com/mediapipe/solutions/setup_python
+An installed Python and a Mediapipe environment is mandatory for using these examples. You can follow the official Mediapipe installation guide [https://developers.google.com/mediapipe/solutions/setup_python](https://developers.google.com/mediapipe/solutions/setup_python)
 
 These python script examples have three versions: one for face landmarks recognition (face mesh), one for body landmarks recognition (pose landmark), and one for hand landmarks recognition (hand landmarks).
 

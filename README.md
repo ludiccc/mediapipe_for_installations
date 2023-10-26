@@ -1,6 +1,6 @@
 # MediaPipe for installations - MediaPipe para instalaciones
 As the main propouse of this examples is to guide spanish-speaken students, the main documentation will be in spanish. If you need it in english, you have it here: 
-[English]: https://github.com/ludiccc/mediapipe_for_installations/blob/main/README_en.md
+[English](https://github.com/ludiccc/mediapipe_for_installations/blob/main/README_en.md)
 
  _English_
 Simple MediaPipe examples for electronic/digital/robotic art installations
@@ -23,7 +23,7 @@ Contacto/Contact: Federico Joselevich Puiggrós [f@ludic.cc](mailto:f@ludic.cc)
 
 # Como usar estos ejemplos
 
-Para comenzar, es indispensable tener instalado Python y un entorno con Mediapipe. Pueden seguir la guía oficial de instalación de Mediapipe [https://developers.google.com/mediapipe/solutions/setup_python]: https://developers.google.com/mediapipe/solutions/setup_python
+Para comenzar, es indispensable tener instalado Python y un entorno con Mediapipe. Pueden seguir la guía oficial de instalación de Mediapipe [https://developers.google.com/mediapipe/solutions/setup_python](https://developers.google.com/mediapipe/solutions/setup_python)
 
 Estos ejemplos de scripts de python tienen tres versiones: una para reconocimiento de nodos de cara (face mesh), una para reconocimiento de nodos del cuerpo (pose landmark) y una para reconocimiento de nodos de mano (hand landmarks).
 
