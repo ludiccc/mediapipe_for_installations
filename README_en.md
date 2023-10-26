@@ -3,7 +3,7 @@ Con el propósito principal de este repositorio es dar ejemplos para el trabajo 
 
 Simple MediaPipe examples for electronic/digital/robotic art installations
 
-These examples are part of the work of the subject Workshop 5/Final Project Workshop of the degree in Multimedia Design at the National University of La Plata.
+These examples are part of the work of the subject Workshop 5/Final Project Workshop of the degree in Multimedia Design at the Universidad Nacional de La Plata. [Taller 5](https://taller5.ludic.cc)]
 
 These examples are for academic use. Do not take them as a formal reference on how to use MediaPipe. For that, refer to [https://developers.google.com/mediapipe/](https://developers.google.com/mediapipe/)
 

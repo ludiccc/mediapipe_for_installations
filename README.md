@@ -5,7 +5,7 @@ As the main propouse of this examples is to guide spanish-speaken students, the 
  _English_
 Simple MediaPipe examples for electronic/digital/robotic art installations
 
-These examples are part of the work of the subject Workshop 5/Final Project Workshop of the degree in Multimedia Design at the National University of La Plata.
+These examples are part of the work of the subject Workshop 5/Final Project Workshop of the degree in Multimedia Design at the Universidad Nacional de La Plata: [Taller 5](https://taller5.ludic.cc)
 
 These examples are for academic use. Do not take them as a formal reference on how to use MediaPipe. For that, refer to [https://developers.google.com/mediapipe/](https://developers.google.com/mediapipe/)
 
@@ -13,7 +13,7 @@ These examples are for academic use. Do not take them as a formal reference on h
 _Castellano_
 Ejemplos sencillos para utilizar en instalaciones de arte electrónico/digital/robótico. 
 
-Estos ejemplos son parte del trabajo de la materia Taller 5 de la licenciatura en Diseño Multimedial de la Universidad Nacional de La Plata.
+Estos ejemplos son parte del trabajo de la materia Taller 5 de la licenciatura en Diseño Multimedial de la Universidad Nacional de La Plata. [Taller 5](https://taller5.ludic.cc)
 
 
 Estos ejemplos son de uso académico. No tomarlos como referencia formal de cómo usar MediaPipe. Para eso, referirse a [https://developers.google.com/mediapipe/](https://developers.google.com/mediapipe/)
