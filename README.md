@@ -1,6 +1,15 @@
 # MediaPipe for installations - MediaPipe para instalaciones
+As the main propouse of this examples is to guide spanish-speaken students, the main documentation will be in spanish. If you need it in english, you have it here: [English]: README_en.md
+
+ _English_
 Simple MediaPipe examples for electronic/digital/robotic art installations
 
+These examples are part of the work of the subject Workshop 5/Final Project Workshop of the degree in Multimedia Design at the National University of La Plata.
+
+These examples are for academic use. Do not take them as a formal reference on how to use MediaPipe. For that, refer to [https://developers.google.com/mediapipe/](https://developers.google.com/mediapipe/)
+
+
+_Castellano_
 Ejemplos sencillos para utilizar en instalaciones de arte electrónico/digital/robótico. 
 
 Estos ejemplos son parte del trabajo de la materia Taller 5 de la licenciatura en Diseño Multimedial de la Universidad Nacional de La Plata.
@@ -8,7 +17,7 @@ Estos ejemplos son parte del trabajo de la materia Taller 5 de la licenciatura e
 
 Estos ejemplos son de uso académico. No tomarlos como referencia formal de cómo usar MediaPipe. Para eso, referirse a [https://developers.google.com/mediapipe/](https://developers.google.com/mediapipe/)
 
-Contacto: Federico Joselevich Puiggrós [f@ludic.cc](mailto:f@ludic.cc)
+Contacto/Contact: Federico Joselevich Puiggrós [f@ludic.cc](mailto:f@ludic.cc)
 [www.ludic.cc](https://www.ludic.cc)
 
 # How to use this examples - Como usar estos ejemplos (in spanish, just for now...)
