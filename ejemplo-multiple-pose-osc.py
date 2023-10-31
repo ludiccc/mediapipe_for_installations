@@ -23,6 +23,8 @@ parser.add_argument('--cam_height', type=int, default=480)
 parser.add_argument("--ip", default="127.0.0.1", help="The ip of the OSC server")
 parser.add_argument("--port", type=int, default=5005, help="The port the OSC server is listening on")
 parser.add_argument("--image", type=str, default="", help="For testing porpouses only, just test an image.")
+parser.add_argument("--debug_send", action='store_true', help="For debugging everything that is being sent.")
+parser.add_argument("--send_separated", action='store_true', help="TODO: Send each person as a different message.")
 args = parser.parse_args()
 
 #osc server:
@@ -67,6 +69,8 @@ def draw_landmarks_on_image(rgb_image, detection_result):
         
         if len(strmsg) > 0: strmsg = strmsg + ","
         strmsg = strmsg + "{:.3f}".format(landmarks[0].x)+" "+"{:.3f}".format(landmarks[0].y)+" "+"{:.3f}".format(landmarks[0].z)
+        if args.debug_send:
+            print("\tLandmark",idx,strmsg)
 
 
     msg.add_arg(strmsg, arg_type="s")

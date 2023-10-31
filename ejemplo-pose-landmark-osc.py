@@ -21,6 +21,8 @@ parser.add_argument('--cam_width', type=int, default=640)
 parser.add_argument('--cam_height', type=int, default=480)
 parser.add_argument("--ip", default="127.0.0.1", help="The ip of the OSC server")
 parser.add_argument("--port", type=int, default=5005, help="The port the OSC server is listening on")
+parser.add_argument("--debug_send", action='store_true', help="For debugging everything that is being sent.")
+parser.add_argument("--show_keypoints", action='store_true', help="Show keypoints numbers on screen.")
 args = parser.parse_args()
 
 #osc server:
@@ -45,6 +47,8 @@ def draw_landmarks_on_image(rgb_image, detection_result):
     
     # Loop through the detected poses to visualize.
     for idx in range(len(landmarks_list)):
+        if args.debug_send:
+            print("Person",idx, "detected")
         landmarks = landmarks_list[idx]
         msg = osc_message_builder.OscMessageBuilder(address = 'pose_'+str(idx))
 
@@ -60,12 +64,22 @@ def draw_landmarks_on_image(rgb_image, detection_result):
           solutions.pose.POSE_CONNECTIONS,
           solutions.drawing_styles.get_default_pose_landmarks_style())
 
+        annotated_image_rows, annotated_image_cols, _ = annotated_image.shape
+        print(annotated_image_rows, annotated_image_cols)
         strmsg = ""
-        for landmark in landmarks:
+        for landmark_idx, landmark in enumerate(landmarks):
             strmsg = "{:.3f}".format(landmark.x)+" "+"{:.3f}".format(landmark.y)+" "+"{:.3f}".format(landmark.z)
             msg.add_arg(strmsg, arg_type="s")
 
-        print(strmsg)
+            if args.debug_send:
+                print("\tLandmark",landmark_idx,strmsg)
+
+            if args.show_keypoints:
+                cv2.putText(annotated_image, str(landmark_idx), 
+                    (int(landmark.x*annotated_image_cols), int(landmark.y*annotated_image_rows)), 
+                    cv2.FONT_HERSHEY_PLAIN, 0.9, (255,255,255))
+
+        if not args.debug_send: print(strmsg)
         msg = msg.build()
         client.send(msg)
 
@@ -81,7 +95,8 @@ base_options = python.BaseOptions(model_asset_path=model_path)
 options = vision.PoseLandmarkerOptions(
     base_options=base_options,
     output_segmentation_masks=True,
-    min_pose_detection_confidence=0.5)
+    min_pose_detection_confidence=0.8,
+    num_poses=1)
 detector = vision.PoseLandmarker.create_from_options(options)
 
 # STEP 3: Load the input image.
