@@ -68,7 +68,7 @@ def draw_landmarks_on_image(rgb_image, detection_result):
         print(annotated_image_rows, annotated_image_cols)
         strmsg = ""
         for landmark_idx, landmark in enumerate(landmarks):
-            strmsg = "{:.3f}".format(landmark.x)+" "+"{:.3f}".format(landmark.y)+" "+"{:.3f}".format(landmark.z)
+            strmsg = "{:.3f}".format(landmark.x)+" "+"{:.3f}".format(landmark.y)+" "+"{:.3f}".format(landmark.z)+" "+"{:.3f}".format(landmark.visibility)+" "+"{:.3f}".format(landmark.presence)
             msg.add_arg(strmsg, arg_type="s")
 
             if args.debug_send:
