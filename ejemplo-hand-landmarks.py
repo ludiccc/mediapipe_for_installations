@@ -9,6 +9,7 @@ import cv2
 import mediapipe as mp
 from argparse import ArgumentParser
 from pythonosc import udp_client, osc_message_builder
+import math
 
 # Argument parser
 parser = ArgumentParser()
@@ -31,7 +32,11 @@ cap = cv2.VideoCapture(args.cam)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, args.cam_width)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, args.cam_height)
 
-with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands:
+with mp_hands.Hands(
+    max_num_hands=6,
+    min_detection_confidence=0.5,
+    min_tracking_confidence=0.5
+) as hands:
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
@@ -45,25 +50,44 @@ with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) a
 
         # Draw the hand landmarks
         if results.multi_hand_landmarks:
-            for landmarks in results.multi_hand_landmarks:
+            for mano_idx, landmarks in enumerate(results.multi_hand_landmarks):
                 mp_drawing.draw_landmarks(frame, landmarks, mp_hands.HAND_CONNECTIONS)
 
                 msg = osc_message_builder.OscMessageBuilder(address='hand_landmarks')
 
-                for landmark in landmarks.landmark:
-                    strmsg = "{:.3f}".format(landmark.x)+" "+"{:.3f}".format(landmark.y)+" "+"{:.3f}".format(landmark.z)
+                for idx, landmark in enumerate(landmarks.landmark):
+                    strmsg = "{mano_idx} {idx} {landmark.x:.3f} {landmark.y:.3f} {landmark.z:.3f}".format(mano_idx=mano_idx, idx=idx, landmark=landmark)
                     print(strmsg)
-                    msg.add_arg(strmsg, arg_type="s")
-                    
+                    msg.add_arg(strmsg, arg_type="s")                    
 
                 msg = msg.build()
                 client.send(msg)
+
+                msg = osc_message_builder.OscMessageBuilder(address='distancia_pulgar_indice')
+
+                world_landmarks = results.multi_hand_world_landmarks[mano_idx]
+                x1 = world_landmarks.landmark[4].x
+                y1 = world_landmarks.landmark[4].y
+                # z1 = world_landmarks.landmark[4].z
+                x2 = world_landmarks.landmark[8].x
+                y2 = world_landmarks.landmark[8].y
+                # z2 = world_landmarks.landmark[8].z
+                distnacia = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+                print("Distancia entre 4 y 8:", distnacia)
+                print("Mano:", mano_idx)
+                strmsg = "{mano_idx} {distancia}".format(mano_idx=mano_idx, distancia=distnacia)
+                print(strmsg)
+                msg.add_arg(strmsg, arg_type="s")
+                msg = msg.build()
+                client.send(msg)
+
 
         # Display the frame
         cv2.imshow('Hand Landmarks', frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+
 
 # Release the video capture and close the OpenCV windows
 cap.release()
