@@ -26,7 +26,7 @@ from mp_osc.capture import (  # noqa: E402
 from mp_osc.config import Config  # noqa: E402
 from mp_osc.ui import ControlPanel, ListBox, RadioButton, Toggle  # noqa: E402
 
-PORTRAIT = os.path.join(ROOT, "brother-977170_1280.jpg")
+PORTRAIT = os.path.join(ROOT, "test_portrait_synthetic.png")
 
 
 class ListCamerasTest(unittest.TestCase):

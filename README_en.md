@@ -1,15 +1,8 @@
-# MediaPipe for installations - MediaPipe para instalaciones
-Con el propósito principal de este repositorio es dar ejemplos para el trabajo de estudiantes que hablan castellano, la documentación principal está en ese idioma. Se pueden referir a ella aquí: [Castellano](https://github.com/ludiccc/mediapipe_for_installations/blob/main/README.md)
+# MediaPipe for installations
 
 Simple MediaPipe examples for electronic/digital/robotic art installations
 
-These examples are part of the work of the subject Workshop 5/Final Project Workshop of the degree in Multimedia Design at the Universidad Nacional de La Plata. [Taller 5](https://taller5.ludic.cc)]
-
 These examples are for academic use. Do not take them as a formal reference on how to use MediaPipe. For that, refer to [https://developers.google.com/mediapipe/](https://developers.google.com/mediapipe/)
-
-
-Contacto/Contact: xxx xxx xxx [user@example.com](mailto:user@example.com)
-[www.ludic.cc](https://www.ludic.cc)
 
 # mediapipe_osc.py: the all-in-one app
 
@@ -43,6 +36,30 @@ python mediapipe_osc.py --blobs --format kinect --port 12000   # ceiling camera 
 python mediapipe_osc.py --template ascii                    # another look
 python osc_monitor.py          # in another terminal: shows what arrives
 ```
+
+# Receiver examples: Python, Processing, openFrameworks, TouchDesigner
+
+For each detector of `mediapipe_osc.py` — **body** (pose), **hands**, **hand
+gestures**, **face** and **blobs** — there is a receiver example in each of
+the four environments used in the course.  They are starting points for an
+installation: they receive the OSC messages, keep every person / hand / face /
+blob by its id and draw what arrives; each one also prints the typical
+*events* (somebody entered, a pinch closed, a gesture changed, a mouth opened,
+a blob changed zone).
+
+| folder | what | how to try it |
+|--------|------|---------------|
+| [`python-examples/`](python-examples/) | 5 scripts (python-osc + OpenCV) | `make all` runs them one after the other; `make test` without a camera |
+| [`processing-examples/`](processing-examples/) | 5 sketches (oscP5) | the Processing IDE, or `make all` with `processing-java` |
+| [`openFrameworks-examples/`](openFrameworks-examples/) | 5 projects (ofxOsc), Makefiles + Xcode / Visual Studio project generation | `make all` inside `<openFrameworks>/apps/` |
+| [`touchdesigner-examples/`](touchdesigner-examples/) | 5 scripts that build the network inside TouchDesigner | drag the `.py` into a network, *Run Script* |
+
+Every folder and every example has its own `README.md` with the installation
+and the commands.  Without a camera, `python osc_simulator.py` sends made-up
+data in the exact format of the app for all detectors; `make test` in each
+folder uses it (and, for Processing and openFrameworks, compiles the examples
+against stand-in classes in `tests/stubs/`, so neither Processing nor
+openFrameworks needs to be installed for the check).
 
 # How to use this examples
 

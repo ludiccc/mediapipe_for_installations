@@ -24,8 +24,8 @@ sys.path.insert(0, ROOT)
 from mp_osc.app import App  # noqa: E402
 from mp_osc.config import Config  # noqa: E402
 
-PORTRAIT = os.path.join(ROOT, "brother-977170_1280.jpg")   # 1 person, 2 faces, 1 hand
-GROUP = os.path.join(ROOT, "Equipo_taller5_2023.jpg")      # 5 people (lite model finds 2)
+PORTRAIT = os.path.join(ROOT, "test_portrait_synthetic.png")   # fictional test fixture
+GROUP = os.path.join(ROOT, "test_group_synthetic.png")          # fictional test fixture
 
 
 class CapturingSender:

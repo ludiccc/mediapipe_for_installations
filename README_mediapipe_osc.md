@@ -364,7 +364,7 @@ A ceiling webcam feeding the quad-sound scripts of this repo:
 
 ```
 python mediapipe_osc.py --blobs --format kinect --port 12000          # terminal 1
-python Sonido_Cuadrafonico/10_instalacion_juli_rojas.py               # terminal 2
+python Sonido_Cuadrafonico/10_instalacion_final.py                    # terminal 2
 ```
 
 With the Kinect itself: `--source kinect --blobs --format kinect --port 12000`
@@ -413,6 +413,15 @@ to load leaves the current look in place. See [`templates/README.md`](templates/
 
 ## Receivers
 
+* `python-examples/`, `processing-examples/`, `openFrameworks-examples/`,
+  `touchdesigner-examples/` — one receiver per detector (body, hands,
+  gestures, face, blobs) in each environment, each with a README, a
+  Makefile to build / run / test them, and the events an installation
+  reacts to.  Start there.
+* `osc_simulator.py` — sends made-up data with the exact schema of the `mp`
+  format for every detector (people who walk in and out, hands with
+  gestures, faces with blendshapes and mesh, blobs), to test any receiver
+  without a camera: `python osc_simulator.py --only pose,blobs --port 5005`.
 * `osc_mp_tracking_example/` — Processing sketch for the `mp` format (ids,
   bounding boxes, velocity arrows, hands). Written alongside the app but not
   run here (no Processing in the development environment).

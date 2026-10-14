@@ -24,7 +24,7 @@ from mp_osc.mapping import (  # noqa: E402
 from mp_osc.ui import ControlPanel  # noqa: E402
 from tests.test_cameras import CAMS, CapturingSender, FakeCamera, FakeKinect, fake_open_source  # noqa: E402
 
-PORTRAIT = os.path.join(ROOT, "brother-977170_1280.jpg")
+PORTRAIT = os.path.join(ROOT, "test_portrait_synthetic.png")
 
 # the example file of tpf-tools/mapping/mapping_in_mapping_out, verbatim
 TPF_JSON = {

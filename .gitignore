@@ -27,3 +27,19 @@ Temporary Items
 Backup/
 Backup/*
 __pycache__/
+# examples: build products
+python-examples/build/
+processing-examples/build/
+openFrameworks-examples/build/
+openFrameworks-examples/*/obj/
+openFrameworks-examples/*/bin/*
+!openFrameworks-examples/*/bin/data/
+openFrameworks-examples/*/*.xcodeproj/
+openFrameworks-examples/*/*.sln
+openFrameworks-examples/*/*.vcxproj*
+openFrameworks-examples/*/*.plist
+openFrameworks-examples/*/*.cbp
+openFrameworks-examples/*/*.workspace
+openFrameworks-examples/*/*.qbs
+openFrameworks-examples/*/Makefile.linux*
+*.class

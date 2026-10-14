@@ -7,7 +7,7 @@ background and hands them to the same tracker as the other detectors, so every
 blob gets a stable id, ``enter`` / ``leave`` events and a velocity.
 
 It is the OpenCV version of the Processing + Kinect sketch in
-``Sonido_Cuadrafonico/ejemplo_juli_rojas_2``: capture the empty scene as the
+``Sonido_Cuadrafonico/ejemplo_instalacion``: capture the empty scene as the
 background, subtract it from every frame, threshold the difference, keep the
 connected components that are big enough, follow them by nearest centroid.
 

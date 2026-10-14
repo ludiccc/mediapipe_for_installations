@@ -23,7 +23,7 @@ from mp_osc.app import App  # noqa: E402
 from mp_osc.config import Config, parse_args  # noqa: E402
 from mp_osc.ui import ControlPanel, ListBox, PANEL_WIDTH, RadioButton, Stepper, TextField, Toggle  # noqa: E402
 
-PORTRAIT = os.path.join(ROOT, "brother-977170_1280.jpg")
+PORTRAIT = os.path.join(ROOT, "test_portrait_synthetic.png")
 
 
 class CapturingSender:

@@ -1,4 +1,4 @@
-# Sonido cuadrafónico: ejercicios de Juli Rojas
+# Sonido cuadrafónico: ejercicios
 
 Ejercicios progresivos para recibir posiciones de Kinect por OSC y usarlas
 para reproducir y modificar sonidos. Los comentarios y mensajes de los
@@ -10,7 +10,7 @@ programas están en castellano.
    La librería Kinect del sketch original puede requerir Windows y sus
    controladores.
 2. Deja despejada la zona bajo la Kinect. Abre
-   `ejemplo_juli_rojas_2/ejemplo_juli_rojas_2.pde` en Processing y ejecútalo.
+   `ejemplo_instalacion/ejemplo_instalacion.pde` en Processing y ejecútalo.
    Presiona **C** para capturar el fondo vacío. **Q** y **W** bajan y suben la
    sensibilidad de la sustracción de fondo.
 3. Instala Python 3, las dependencias de `requirements.txt` y `ffmpeg`.
@@ -57,7 +57,7 @@ persona salió del campo.
 | `7_siguiente_sonido_aleatorio.py` | Al terminar un sonido, asigna otro que no esté sonando. |
 | `8_hasta_cuatro_personas.py` | Mantiene como máximo cuatro voces para distintas personas. |
 | `9_efectos_colectivos.py` | Las personas extra cambian la reverb y la saturación sin sumar voces. |
-| `10_instalacion_juli_rojas.py` | Une la asignación aleatoria, hasta cuatro voces, efectos y salida seleccionable. |
+| `10_instalacion_final.py` | Une la asignación aleatoria, hasta cuatro voces, efectos y salida seleccionable. |
 
 ## Simular el seguimiento OSC
 
@@ -80,8 +80,8 @@ Los pasos 2 a 10 aceptan `--modo stereo` (por defecto) y
 salidas. Consulta los índices disponibles así:
 
 ```bash
-python 10_instalacion_juli_rojas.py --listar-dispositivos
-python 10_instalacion_juli_rojas.py --modo cuadrafonico --dispositivo 3
+python 10_instalacion_final.py --listar-dispositivos
+python 10_instalacion_final.py --modo cuadrafonico --dispositivo 3
 ```
 
 Orden de canales cuadrafónicos: 1 frente izquierda, 2 frente derecha, 3 fondo

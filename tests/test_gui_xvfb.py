@@ -23,7 +23,7 @@ sys.path.insert(0, ROOT)
 from mp_osc.themes import Theme, load_theme  # noqa: E402
 from mp_osc.ui import PANEL_WIDTH, ControlPanel  # noqa: E402
 
-PORTRAIT = os.path.join(ROOT, "brother-977170_1280.jpg")
+PORTRAIT = os.path.join(ROOT, "test_portrait_synthetic.png")
 DISPLAY = ":97"
 
 

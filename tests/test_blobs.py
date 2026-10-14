@@ -362,7 +362,7 @@ class AppBlobsTest(unittest.TestCase):
         self.assertEqual(sender.messages[-1][1][0], "stopped")
 
     def test_runtime_controls(self):
-        cfg = Config(source=os.path.join(ROOT, "brother-977170_1280.jpg"), blobs=True, blob_mode="dark",
+        cfg = Config(source=os.path.join(ROOT, "test_portrait_synthetic.png"), blobs=True, blob_mode="dark",
                      blob_threshold=60, preview=False, quiet=True)
         sender = self.CapturingSender()
         app = App(cfg, sender=sender)

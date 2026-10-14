@@ -20,7 +20,7 @@ from mp_osc.ui import ControlPanel, RadioButton, Toggle  # noqa: E402
 from tests.test_osc_out import fake_face, fake_hand, fake_pose  # noqa: E402
 
 TEMPLATES = os.path.join(ROOT, "templates")
-PORTRAIT = os.path.join(ROOT, "brother-977170_1280.jpg")
+PORTRAIT = os.path.join(ROOT, "test_portrait_synthetic.png")
 EXAMPLES = ["minimal", "ascii", "baroque"]
 
 

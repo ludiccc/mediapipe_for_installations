@@ -14,7 +14,7 @@ sys.path.insert(0, ROOT)
 
 from mp_osc import capture  # noqa: E402
 
-PORTRAIT = os.path.join(ROOT, "brother-977170_1280.jpg")
+PORTRAIT = os.path.join(ROOT, "test_portrait_synthetic.png")
 
 
 class FakeCapture:
