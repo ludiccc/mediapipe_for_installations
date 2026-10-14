@@ -18,8 +18,43 @@ Estos ejemplos son parte del trabajo de la materia Taller 5 de la licenciatura e
 
 Estos ejemplos son de uso académico. No tomarlos como referencia formal de cómo usar MediaPipe. Para eso, referirse a [https://developers.google.com/mediapipe/](https://developers.google.com/mediapipe/)
 
-Contacto/Contact: Federico Joselevich Puiggrós [f@ludic.cc](mailto:f@ludic.cc)
+Contacto/Contact: xxx xxx xxx [user@example.com](mailto:user@example.com)
 [www.ludic.cc](https://www.ludic.cc)
+
+# mediapipe_osc.py: la app todo-en-uno
+
+`mediapipe_osc.py` reúne los ejemplos de abajo en una sola app configurable:
+pose + manos + gestos + cara en un mismo proceso, argumentos OSC numéricos,
+IDs estables por persona/mano/cara con eventos `enter`/`leave` y velocidad,
+un panel de control en la misma ventana de la vista previa (detectores,
+fuente de video — lista de cámaras y Kinects disponibles: varias a la vez se
+analizan lado a lado, en el orden que se elija —, pausa, IP/puerto, formatos,
+espejo — todo modificable en vivo), entrada de Kinect (v2 y v1) con la opción
+**Z from Kinect** (la z de cada punto pasa a ser la distancia medida en
+metros), modo espejo, suavizado, modo sin ventana, y formatos compatibles con
+los sketches de Processing existentes (`--format legacy`) y con los scripts de
+`Sonido_Cuadrafonico` (`--format kinect`, una webcam reemplaza a la Kinect).
+
+Además trae el detector **Blobs** (OpenCV, sin modelos): para una cámara en
+el techo, siluetas u objetos detecta las formas que se destacan del fondo,
+las enumera y las sigue con IDs (`/mp/blob/...`, y `/kinect/person` para los
+scripts de sonido cuadrafónico, como hacía la Kinect original). Y **plantillas**
+para cambiar el aspecto de la ventana (`--template minimal | ascii | baroque`,
+o un archivo propio; ver `templates/`).
+
+También puede correr sobre un video o una imagen en vez de la webcam, y tiene
+tests. El manual (en inglés) está en
+[README_mediapipe_osc.md](README_mediapipe_osc.md) y la explicación de cómo
+funciona por dentro, pensada para estudiantes, en
+[GUIDE_mediapipe_osc.md](GUIDE_mediapipe_osc.md).
+
+```
+python mediapipe_osc.py --pose --hands --mirror
+python mediapipe_osc.py --list-cameras                      # qué cámaras hay
+python mediapipe_osc.py --blobs --format kinect --port 12000   # cámara cenital -> Sonido_Cuadrafonico
+python mediapipe_osc.py --template ascii                    # otro aspecto
+python osc_monitor.py          # en otra terminal: muestra lo que llega
+```
 
 # Como usar estos ejemplos
 

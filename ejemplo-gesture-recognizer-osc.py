@@ -2,7 +2,7 @@
 #
 #
 # This code is a derivative code from the provided in https://developers.google.com/mediapipe/
-# The example was made by Federico Joselevich Puiggrós and team 
+# The example was made by xxx xxx xxx and team 
 # within the context of Taller 5, Diseño Multimedial, Facultad de Artes, Universidad Nacional de La Plata
 #
 #

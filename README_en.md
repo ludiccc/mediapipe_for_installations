@@ -8,8 +8,41 @@ These examples are part of the work of the subject Workshop 5/Final Project Work
 These examples are for academic use. Do not take them as a formal reference on how to use MediaPipe. For that, refer to [https://developers.google.com/mediapipe/](https://developers.google.com/mediapipe/)
 
 
-Contacto/Contact: Federico Joselevich Puiggrós [f@ludic.cc](mailto:f@ludic.cc)
+Contacto/Contact: xxx xxx xxx [user@example.com](mailto:user@example.com)
 [www.ludic.cc](https://www.ludic.cc)
+
+# mediapipe_osc.py: the all-in-one app
+
+`mediapipe_osc.py` combines the examples below in a single configurable app:
+pose + hands + gestures + face in one process, numeric OSC arguments, stable
+IDs per person/hand/face with `enter`/`leave` events and velocity, a control
+panel in the preview window (detectors, video source — a list of the available
+cameras and Kinects; check several and they are analyzed side by side, in the
+order you choose —, pause, IP/port, formats, mirror — all changeable while
+running), Kinect input (v2 and v1) with **Z from Kinect** (every landmark's z
+becomes the measured distance in metres), mirror mode, smoothing, headless
+mode, and compatibility formats for the existing Processing sketches
+(`--format legacy`) and the `Sonido_Cuadrafonico` scripts (`--format kinect`).
+
+It also has a **Blobs** detector (OpenCV, no models): for a ceiling camera,
+silhouettes or objects it finds the shapes that stand out from the background,
+enumerates and follows them with IDs (`/mp/blob/...`, and `/kinect/person` for
+the quad-sound scripts, as the original Kinect did). And **templates** for the
+look of the window (`--template minimal | ascii | baroque`, or your own file;
+see `templates/`).
+
+It can also run on a video file or an image instead of a webcam, and comes
+with tests. See [README_mediapipe_osc.md](README_mediapipe_osc.md) (manual)
+and [GUIDE_mediapipe_osc.md](GUIDE_mediapipe_osc.md) (how it works inside,
+for students).
+
+```
+python mediapipe_osc.py --pose --hands --mirror
+python mediapipe_osc.py --list-cameras                      # which cameras are there
+python mediapipe_osc.py --blobs --format kinect --port 12000   # ceiling camera -> Sonido_Cuadrafonico
+python mediapipe_osc.py --template ascii                    # another look
+python osc_monitor.py          # in another terminal: shows what arrives
+```
 
 # How to use this examples
 
