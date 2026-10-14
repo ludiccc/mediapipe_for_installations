@@ -34,7 +34,9 @@ see `templates/`).
 It can also run on a video file or an image instead of a webcam, and comes
 with tests. See [README_mediapipe_osc.md](README_mediapipe_osc.md) (manual)
 and [GUIDE_mediapipe_osc.md](GUIDE_mediapipe_osc.md) (how it works inside,
-for students).
+for students). Spanish versions are
+[README_mediapipe_osc_es.md](README_mediapipe_osc_es.md) and
+[GUIDE_mediapipe_osc_es.md](GUIDE_mediapipe_osc_es.md).
 
 ```
 python mediapipe_osc.py --pose --hands --mirror
