@@ -33,10 +33,12 @@ para cambiar el aspecto de la ventana (`--template minimal | ascii | baroque`,
 o un archivo propio; ver `templates/`).
 
 También puede correr sobre un video o una imagen en vez de la webcam, y tiene
-tests. El manual (en inglés) está en
-[README_mediapipe_osc.md](README_mediapipe_osc.md) y la explicación de cómo
-funciona por dentro, pensada para estudiantes, en
-[GUIDE_mediapipe_osc.md](GUIDE_mediapipe_osc.md).
+tests. El manual en castellano está en
+[README_mediapipe_osc_es.md](README_mediapipe_osc_es.md) (su versión en inglés:
+[README_mediapipe_osc.md](README_mediapipe_osc.md)). La explicación de cómo
+funciona por dentro, pensada para estudiantes, está en
+[GUIDE_mediapipe_osc_es.md](GUIDE_mediapipe_osc_es.md) (English:
+[GUIDE_mediapipe_osc.md](GUIDE_mediapipe_osc.md)).
 
 ```
 python mediapipe_osc.py --pose --hands --mirror

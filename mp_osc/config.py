@@ -173,11 +173,13 @@ class Config:
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="mediapipe_osc.py",
-        description="Analyze a live webcam with MediaPipe and send the results as OSC.",
+        description=("Analiza una cámara en vivo con MediaPipe y envía los resultados por OSC. "
+                     "Analyze a live camera with MediaPipe and send the results as OSC. "
+                     "Manual en castellano: README_mediapipe_osc_es.md; English manual: README_mediapipe_osc.md."),
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
-    g = p.add_argument_group("video input")
+    g = p.add_argument_group("entrada de video / video input")
     g.add_argument("--source", default="",
                    help="webcam index (0, 1, ...), 'kinect' (kinect:1 = second one), several cameras "
                         "side by side joined with + (e.g. 0+kinect), a video file or a still image "
@@ -214,7 +216,7 @@ def build_parser() -> argparse.ArgumentParser:
     g.add_argument("--max-fps", type=float, default=0.0,
                    help="cap the analysis/sending rate (0 = as fast as possible)")
 
-    g = p.add_argument_group("detectors (default: --pose)")
+    g = p.add_argument_group("detectores / detectors (predeterminado / default: --pose)")
     g.add_argument("--pose", action="store_true", help="body landmarks (33 points per person)")
     g.add_argument("--hands", action="store_true", help="hand landmarks (21 points per hand)")
     g.add_argument("--face", action="store_true", help="face landmarks + blendshapes")
@@ -250,7 +252,7 @@ def build_parser() -> argparse.ArgumentParser:
     g.add_argument("--models-dir", default=DEFAULT_MODELS_DIR,
                    help="folder containing the .task model files")
 
-    g = p.add_argument_group("OSC output")
+    g = p.add_argument_group("salida OSC / OSC output")
     g.add_argument("--ip", default="127.0.0.1", help="OSC receiver address")
     g.add_argument("--port", type=int, default=5005, help="OSC receiver port")
     g.add_argument("--format", dest="formats", nargs="+", choices=FORMATS, default=["mp"],
@@ -278,7 +280,7 @@ def build_parser() -> argparse.ArgumentParser:
     g.add_argument("--invert-x", action="store_true",
                    help="'kinect' format: send 1-x instead of x")
 
-    g = p.add_argument_group("tracking")
+    g = p.add_argument_group("seguimiento / tracking")
     g.add_argument("--track-distance", type=float, default=0.25,
                    help="max normalized distance between frames to keep the same ID")
     g.add_argument("--track-timeout", type=float, default=0.5,
@@ -288,7 +290,7 @@ def build_parser() -> argparse.ArgumentParser:
     g.add_argument("--max-speed", type=float, default=2.0,
                    help="speed (normalized units per second) that maps to 1.0")
 
-    g = p.add_argument_group("preview / logging")
+    g = p.add_argument_group("vista previa y registro / preview and logging")
     g.add_argument("--no-preview", dest="preview", action="store_false",
                    help="run headless (no window)")
     g.add_argument("--no-panel", dest="panel", action="store_false",

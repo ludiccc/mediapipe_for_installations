@@ -1,5 +1,7 @@
 # Templates — the look & feel of the `mediapipe_osc.py` window
 
+[Versión en castellano](README_es.md)
+
 A template decides how the window *looks*: the colours and fonts of the
 control panel, how each widget is drawn, and how the camera image and the
 landmarks are rendered. It never changes what the app *does* (OSC, detectors,
