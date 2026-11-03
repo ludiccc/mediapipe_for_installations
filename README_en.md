@@ -78,3 +78,7 @@ Two processes are executed, one in python to do the recognition and another in w
 The OSC messages coming from the python script contain a number of arguments equal to the number of detected nodes. That is, in the case of *ejemplo-pose-landmark-osc.py*, up to 32 nodes are recognized, according to ![Pose Landmarks list](https://developers.google.com/static/mediapipe/images/solutions/pose_landmarks_index.png). The script will then send a message with 32 arguments, each containing the three position values (*x*, *y*, *z*) for that node, separated by a space. The values are normalized, that is, they are between 0 and 1.
 
 In the Processing example, these values are broken down and added to a PVector, then drawn on the screen.
+
+## License
+
+Copyright (C) 2026 Federico Joselevich. Distributed under the [Mozilla Public License 2.0](LICENSE.md). External dependencies (for example MediaPipe) keep their own licenses.
